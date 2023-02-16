@@ -14,3 +14,11 @@ after_success:
   - docker build -t senkonrad/multi-nginx ./nginx
   - docker build -t senkonrad/multi-server ./server
   - docker build -t senkonrad/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
+  - docker push senkonrad/multi-client
+  - docker push senkonrad/multi-nginx
+  - docker push senkonrad/multi-server
+  - docker push senkonrad/multi-worker
+  
